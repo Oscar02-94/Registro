@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+      <div class="card">
+        <div class="card-contend">
+          <form #empleadoForm = "ngForm"(ngSubmit)="addEmpleado(empleadoForm)">
+            
+            <input type="hidden" name="_id" #_id="ngModel"[(ngModel)]="empleadoService.selectedEmpleado._id">
+            
+            <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="name" #name="ngModel"[(ngModel)]="empleadoService.selectedEmpleado.name" placeholder="Ingresa tu nombre">
+
+                  </div>
+                  <div class="input-field col s12">
+                      <input type="text" name="puesto" #puesto="ngModel"[(ngModel)]="empleadoService.selectedEmpleado.puesto" placeholder="Ingresa tu puesto">
+    
+                      </div>
+                      <div class="input-field col s12">
+                          <input type="text" name="sueldo" #sueldo="ngModel"[(ngModel)]="empleadoService.selectedEmpleado.sueldo" placeholder="Ingresa tu sueldo">
+        
+                          </div>
+                          <div class="card-action">
+                            <div class="input-field col s20">
+                              <button class="btn"(click)="resetForm(empleadoForm)">Linpiar</button>
+                              <button class="btn ringht"  style="margin-left:2px">Gueardar</button>
+                            </div>
+
+                          </div>
+
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="col s7">
+      <table>
+        <thead>
+          <th>name</th>
+          <th>puesto</th>
+          <th>Operador</th>
+
+        </thead>
+        <tbody *ngFor='let empleado of empleadoService.empleados'>
+          <td>{{empleado.name}}</td>
+          <td>{{empleado.puesto}}</td> 
+          <td>
+            <a (click)="editEmpleado(empleado)">
+             <i class="material-icons">edit</i>              
+            </a>
+            <a (click)="deleteEmpleado(empleado._id)">
+              <i class="material-icons">delete</i>              
+            </a>
+          </td>         
+           
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
